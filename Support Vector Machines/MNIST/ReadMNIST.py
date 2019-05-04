@@ -44,7 +44,8 @@ def decode_idx3_ubyte(idx3_ubyte_file):
         if (i + 1) % 10000 == 0:
             print('已解析 %d' % (i + 1) + '张')
             print(offset)
-        images[i] = np.array(struct.unpack_from(fmt_image, bin_data, offset)).reshape((num_rows, num_cols))
+        images[i] = np.array(
+            struct.unpack_from(fmt_image, bin_data, offset)).reshape((num_rows, num_cols))
         offset += struct.calcsize(fmt_image)
     return images
 
@@ -88,7 +89,8 @@ def load_train_images(idx_ubyte_file=train_images_idx3_ubyte_file):
     0017     unsigned byte   ??               pixel
     ........
     xxxx     unsigned byte   ??               pixel
-    Pixels are organized row-wise. Pixel values are 0 to 255. 0 means background (white), 255 means foreground (black).
+    Pixels are organized row-wise. Pixel values are 0 to 255. 
+    0 means background (white), 255 means foreground (black).
 
     :param idx_ubyte_file: idx文件路径
     :return: n*row*col维np.array对象，n为图片数量
